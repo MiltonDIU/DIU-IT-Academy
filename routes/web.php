@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\AuditLogsController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\SettingsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +47,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     // Audit Logs
     Route::resource('audit-logs', AuditLogsController::class, ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
+
+    //    Route::resources(['permissions' => SettingsController::class],['except' => ['create', 'store', 'show', 'destroy']]);
+    Route::post('settings/media', [SettingsController::class, 'storeMedia'])->name('settings.storeMedia');
+    Route::post('settings/ckmedia', [SettingsController::class, 'storeCKEditorImages'])->name('settings.storeCKEditorImages');
+    Route::get('settings', [SettingsController::class, 'edit'])->name('settings.edit');
+    Route::put('settings', [SettingsController::class, 'update'])->name('settings.update');
+
+
 });
 
 

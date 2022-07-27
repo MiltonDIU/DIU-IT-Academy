@@ -83,6 +83,16 @@
                         </ul>
                     </li>
                 @endcan
+                @can('setting_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.settings.edit") }}" class="nav-link {{ request()->is("admin/settings") || request()->is("admin/settings/*") ? "c-active" : "" }}">
+                            <i class="fa-fw fas fa-cogs">
+
+                            </i>
+                            {{ trans('cruds.setting.title') }}
+                        </a>
+                    </li>
+                @endcan
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">

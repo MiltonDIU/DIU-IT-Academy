@@ -248,9 +248,11 @@
                 height: 500
             },
             success: function (file, response) {
+                console.log(response.name);
                 $('form').find('input[name="logo"]').remove()
                 $('form').append('<input type="hidden" name="logo" value="' + response.name + '">')
             },
+
             removedfile: function (file) {
                 file.previewElement.remove()
                 if (file.status !== 'error') {
