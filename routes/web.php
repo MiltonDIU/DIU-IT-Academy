@@ -9,6 +9,11 @@ use App\Http\Controllers\Admin\AuditLogsController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
+use App\Http\Controllers\Admin\PositionController;
+use App\Http\Controllers\Admin\MenusController;
+use App\Http\Controllers\Admin\ArticleCategoryController;
+use App\Http\Controllers\Admin\ArticlesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +38,15 @@ Route::get('/home', function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::resources([
+        'positions' => PositionController::class,
+        'menus' => MenusController::class,
+        'article-categories' => ArticleCategoryController::class,
+        'articles' => ArticlesController::class,
+    ]);
+
+
+
     // Permissions
     Route::delete('permissions/destroy', [PermissionsController::class,'massDestroy'])->name('permissions.massDestroy');
     Route::resource('permissions', PermissionsController::class);
@@ -55,6 +69,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::put('settings', [SettingsController::class, 'update'])->name('settings.update');
 
 
+
+    // Article Category
+    Route::delete('article-categories/destroy', [ArticleCategoryController::class, 'massDestroy'])->name('article-categories.massDestroy');
+
+    // Articles
+    Route::delete('articles/destroy', [ArticlesController::class, 'massDestroy'])->name('articles.massDestroy');
+    Route::post('articles/media', [ArticlesController::class, 'storeMedia'])->name('articles.storeMedia');
+    Route::post('articles/ckmedia', [ArticlesController::class, 'storeCKEditorImages'])->name('articles.storeCKEditorImages');
+
+    // Position
+    Route::delete('positions/destroy', [PositionController::class, 'massDestroy'])->name('positions.massDestroy');
+    Route::post('positions/media', [PositionController::class, 'storeMedia'])->name('positions.storeMedia');
+    Route::post('positions/ckmedia', [PositionController::class, 'storeCKEditorImages'])->name('positions.storeCKEditorImages');
+    // Menus
+    Route::delete('menus/destroy', [MenusController::class, 'massDestroy'])->name('menus.massDestroy');
 });
 
 

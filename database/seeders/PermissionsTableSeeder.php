@@ -91,14 +91,105 @@ class PermissionsTableSeeder extends Seeder
 //                'id'    => 19,
 //                'title' => 'profile_password_edit',
 //            ],
+//            [
+//                'id'    => 20,
+//                'title' => 'setting_edit',
+//            ],
+//            [
+//                'id'    => 21,
+//                'title' => 'setting_access',
+//            ],
+
+
             [
-                'id'    => 20,
-                'title' => 'setting_edit',
+                'id'    => 22,
+                'title' => 'position_create',
             ],
             [
-                'id'    => 21,
-                'title' => 'setting_access',
+                'id'    => 23,
+                'title' => 'position_edit',
             ],
+            [
+                'id'    => 24,
+                'title' => 'position_show',
+            ],
+            [
+                'id'    => 25,
+                'title' => 'position_delete',
+            ],
+            [
+                'id'    => 26,
+                'title' => 'position_access',
+            ],
+            [
+                'id'    => 27,
+                'title' => 'menu_create',
+            ],
+            [
+                'id'    => 28,
+                'title' => 'menu_edit',
+            ],
+            [
+                'id'    => 29,
+                'title' => 'menu_show',
+            ],
+            [
+                'id'    => 30,
+                'title' => 'menu_delete',
+            ],
+            [
+                'id'    => 31,
+                'title' => 'menu_access',
+            ],
+            [
+                'id'    => 32,
+                'title' => 'menu_management_access',
+            ],
+            [
+                'id'    => 33,
+                'title' => 'article_management_access',
+            ],
+            [
+                'id'    => 34,
+                'title' => 'article_category_create',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'article_category_edit',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'article_category_show',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'article_category_delete',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'article_category_access',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'article_create',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'article_edit',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'article_show',
+            ],
+            [
+                'id'    => 42,
+                'title' => 'article_delete',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'article_access',
+            ],
+
         ];
 
         Permission::insert($permissions);
