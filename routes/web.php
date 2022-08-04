@@ -13,7 +13,9 @@ use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\MenusController;
 use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\ArticlesController;
-
+use App\Http\Controllers\Admin\SlidersController;
+use App\Http\Controllers\Admin\PartnersController;
+use App\Http\Controllers\Admin\SocialsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,9 +45,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'menus' => MenusController::class,
         'article-categories' => ArticleCategoryController::class,
         'articles' => ArticlesController::class,
+        'sliders' => SlidersController::class,
+        'partners' => PartnersController::class,
+        'socials' => SocialsController::class,
     ]);
 
 
+    // Sliders
+    Route::delete('sliders/destroy', [SlidersController::class, 'massDestroy'])->name('sliders.massDestroy');
+    Route::post('sliders/media', [SlidersController::class, 'storeMedia'])->name('sliders.storeMedia');
+    Route::post('sliders/ckmedia', [SlidersController::class, 'storeCKEditorImages'])->name('sliders.storeCKEditorImages');
+
+    // Partners
+    Route::delete('partners/destroy', [PartnersController::class, 'massDestroy'])->name('partners.massDestroy');
+    Route::post('partners/media', [PartnersController::class, 'storeMedia'])->name('partners.storeMedia');
+    Route::post('partners/ckmedia', [PartnersController::class, 'storeCKEditorImages'])->name('partners.storeCKEditorImages');
+
+    // Socials
+    Route::delete('socials/destroy', [SocialsController::class, 'massDestroy'])->name('socials.massDestroy');
 
     // Permissions
     Route::delete('permissions/destroy', [PermissionsController::class,'massDestroy'])->name('permissions.massDestroy');
@@ -118,3 +135,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/htest',[App\Http\Controllers\HomeController::class,'htest'])->name('htest');

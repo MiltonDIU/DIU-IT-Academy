@@ -174,7 +174,35 @@
                         </ul>
                     </li>
                 @endcan
+                @can('slider_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.sliders.index") }}" class="nav-link {{ request()->is("admin/sliders") || request()->is("admin/sliders/*") ? "c-active" : "" }}">
+                            <i class="fa-fw fas fa-cogs nav-icon">
+                            </i>
+                            Sliders
+                        </a>
+                    </li>
+                @endcan
+                @can('partner_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.partners.index") }}" class="nav-link {{ request()->is("admin/partners") || request()->is("admin/partners/*") ? "c-active" : "" }}">
+                            <i class="fa-fw fas fa-cogs nav-icon">
 
+                            </i>
+                            {{ trans('cruds.partner.title') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('social_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.socials.index") }}" class="nav-link {{ request()->is("admin/socials") || request()->is("admin/socials/*") ? "c-active" : "" }}">
+                            <i class="fa-fw fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('cruds.social.title') }}
+                        </a>
+                    </li>
+                @endcan
                 @if(file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php')))
                     @can('profile_password_edit')
                         <li class="nav-item">

@@ -25,4 +25,31 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function htest(){
+$arr =[2, -1, 5, 6, 0, -3];
+$this->plusMinus($arr);
+}
+
+   public function plusMinus($arr) {
+       $len = sizeof($arr);
+        $positiveCount = 0;
+         $negativeCount = 0;
+         $zeroCount = 0;
+       for ($i = 0; $i < $len; $i++) {
+           if ($arr[$i] > 0) {
+               $positiveCount++;
+           }
+           else if ($arr[$i] < 0) {
+               $negativeCount++;
+           }
+           else if ($arr[$i] == 0) {
+               $zeroCount++;
+           }
+       }
+       echo $positiveCount / $len."     ";
+       echo $negativeCount / $len."     ";
+       echo $zeroCount / $len."     ";
+      echo "/n";
+    }
 }
