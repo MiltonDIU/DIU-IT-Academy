@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ArticlesController;
 use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\SocialsController;
+use App\Http\Controllers\Admin\TestimonialController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,8 +49,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'sliders' => SlidersController::class,
         'partners' => PartnersController::class,
         'socials' => SocialsController::class,
+        'testimonials' => TestimonialController::class,
     ]);
 
+    // Testimonial
+
+    Route::delete('testimonials/destroy', [TestimonialController::class, 'massDestroy'])->name('testimonials.massDestroy');
+    Route::post('testimonials/media', [TestimonialController::class, 'storeMedia'])->name('testimonials.storeMedia');
+    Route::post('testimonials/ckmedia', [TestimonialController::class, 'storeCKEditorImages'])->name('testimonials.storeCKEditorImages');
 
     // Sliders
     Route::delete('sliders/destroy', [SlidersController::class, 'massDestroy'])->name('sliders.massDestroy');

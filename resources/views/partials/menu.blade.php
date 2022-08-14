@@ -193,6 +193,18 @@
                         </a>
                     </li>
                 @endcan
+                @can('testimonial_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.testimonials.index") }}" class="nav-link {{ request()->is("admin/testimonials") || request()->is("admin/testimonials/*") ? "active" : "" }}">
+                            <i class="fa-fw nav-icon fas fa-cogs">
+
+                            </i>
+                            <p>
+                                {{ trans('cruds.testimonial.title') }}
+                            </p>
+                        </a>
+                    </li>
+                @endcan
                 @can('social_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.socials.index") }}" class="nav-link {{ request()->is("admin/socials") || request()->is("admin/socials/*") ? "c-active" : "" }}">
