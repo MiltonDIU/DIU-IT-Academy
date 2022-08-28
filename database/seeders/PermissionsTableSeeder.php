@@ -250,25 +250,65 @@ class PermissionsTableSeeder extends Seeder
 //                'id'    => 58,
 //                'title' => 'social_access',
 //            ],
+//            [
+//                'id'    => 59,
+//                'title' => 'testimonial_create',
+//            ],
+//            [
+//                'id'    => 60,
+//                'title' => 'testimonial_edit',
+//            ],
+//            [
+//                'id'    => 61,
+//                'title' => 'testimonial_show',
+//            ],
+//            [
+//                'id'    => 62,
+//                'title' => 'testimonial_delete',
+//            ],
+//            [
+//                'id'    => 63,
+//                'title' => 'testimonial_access',
+//            ],
             [
-                'id'    => 59,
-                'title' => 'testimonial_create',
+                'id'    => 64,
+                'title' => 'contact_create',
             ],
             [
-                'id'    => 60,
-                'title' => 'testimonial_edit',
+                'id'    => 65,
+                'title' => 'contact_edit',
             ],
             [
-                'id'    => 61,
-                'title' => 'testimonial_show',
+                'id'    => 66,
+                'title' => 'contact_show',
             ],
             [
-                'id'    => 62,
-                'title' => 'testimonial_delete',
+                'id'    => 67,
+                'title' => 'contact_delete',
             ],
             [
-                'id'    => 63,
-                'title' => 'testimonial_access',
+                'id'    => 68,
+                'title' => 'contact_access',
+            ],
+            [
+                'id'    => 69,
+                'title' => 'team_create',
+            ],
+            [
+                'id'    => 70,
+                'title' => 'team_edit',
+            ],
+            [
+                'id'    => 71,
+                'title' => 'team_show',
+            ],
+            [
+                'id'    => 72,
+                'title' => 'team_delete',
+            ],
+            [
+                'id'    => 73,
+                'title' => 'team_access',
             ],
         ];
 

@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\SlidersController;
 use App\Http\Controllers\Admin\PartnersController;
 use App\Http\Controllers\Admin\SocialsController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\ContactsController;
+use App\Http\Controllers\Admin\TeamsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,7 +52,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'partners' => PartnersController::class,
         'socials' => SocialsController::class,
         'testimonials' => TestimonialController::class,
+        'contacts' => ContactsController::class,
+        'teams' => TeamsController::class,
     ]);
+
+
+    // Contacts
+    Route::delete('contacts/destroy', [ContactsController::class,'massDestroy'])->name('contacts.massDestroy');
+
+
+    // Teams
+    Route::delete('teams/destroy', [TeamsController::class,'massDestroy'])->name('teams.massDestroy');
+    Route::post('teams/media', [TeamsController::class,'storeMedia'])->name('teams.storeMedia');
+    Route::post('teams/ckmedia', [TeamsController::class,'storeCKEditorImages'])->name('teams.storeCKEditorImages');
+
 
     // Testimonial
 

@@ -205,6 +205,26 @@
                         </a>
                     </li>
                 @endcan
+                @can('contact_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.contacts.index") }}" class="nav-link {{ request()->is("admin/contacts") || request()->is("admin/contacts/*") ? "c-active" : "" }}">
+                            <i class="fa-fw fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('cruds.contact.title') }}
+                        </a>
+                    </li>
+                @endcan
+                @can('team_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.teams.index") }}" class="nav-link {{ request()->is("admin/teams") || request()->is("admin/teams/*") ? "c-active" : "" }}">
+                            <i class="fa-fw fas fa-cogs nav-icon">
+
+                            </i>
+                            {{ trans('cruds.team.title') }}
+                        </a>
+                    </li>
+                @endcan
                 @can('social_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.socials.index") }}" class="nav-link {{ request()->is("admin/socials") || request()->is("admin/socials/*") ? "c-active" : "" }}">
