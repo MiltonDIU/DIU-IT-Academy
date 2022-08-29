@@ -19,6 +19,14 @@ use App\Http\Controllers\Admin\SocialsController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Admin\TeamsController;
+use App\Http\Controllers\Admin\CoursesController;
+use  App\Http\Controllers\Admin\SkillsCoveredController;
+use App\Http\Controllers\Admin\RequiredSKillsController;
+use App\Http\Controllers\Admin\LessonTypesController;
+use App\Http\Controllers\Admin\CourseContentTypeController;
+use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\LessonsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +37,6 @@ use App\Http\Controllers\Admin\TeamsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::redirect('/', '/login');
 Route::get('/home', function () {
     if (session('status')) {
@@ -54,7 +61,52 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'testimonials' => TestimonialController::class,
         'contacts' => ContactsController::class,
         'teams' => TeamsController::class,
+        'course-categories' => CourseCategoryController::class,
+        'skills-covereds' => SkillsCoveredController::class,
+        'required-s-kills' => RequiredSKillsController::class,
+        'lesson-types' => LessonTypesController::class,
+        'course-content-types' => CourseContentTypeController::class,
+        'courses' => CoursesController::class,
+        'lessons' => LessonsController::class,
     ]);
+
+
+
+
+
+
+    // Course Category
+    Route::delete('course-categories/destroy', [CourseCategoryController::class,'massDestroy'])->name('course-categories.massDestroy');
+    Route::post('course-categories/media', [CourseCategoryController::class,'storeMedia'])->name('course-categories.storeMedia');
+    Route::post('course-categories/ckmedia', [CourseCategoryController::class,'storeCKEditorImages'])->name('course-categories.storeCKEditorImages');
+
+    // Skills Covered
+    Route::delete('skills-covereds/destroy', [SkillsCoveredController::class,'massDestroy'])->name('skills-covereds.massDestroy');
+
+    // Required S Kills
+    Route::delete('required-skills/destroy', [RequiredSKillsController::class,'massDestroy'])->name('required-s-kills.massDestroy');
+    // Lesson Types
+    Route::delete('lesson-types/destroy', [LessonTypesController::class,'LessonTypesController@massDestroy'])->name('lesson-types.massDestroy');
+
+    // Course Content Type
+    Route::delete('course-content-types/destroy', [CourseContentTypeController::class,'massDestroy'])->name('course-content-types.massDestroy');
+
+    // Courses
+    Route::delete('courses/destroy', [CoursesController::class,'massDestroy'])->name('courses.massDestroy');
+    Route::post('courses/media', [CoursesController::class,'storeMedia'])->name('courses.storeMedia');
+    Route::post('courses/ckmedia', [CoursesController::class,'storeCKEditorImages'])->name('courses.storeCKEditorImages');
+
+    // Lessons
+    Route::delete('lessons/destroy', [LessonsController::class,'massDestroy'])->name('lessons.massDestroy');
+
+
+
+
+
+
+
+
+
 
 
     // Contacts
