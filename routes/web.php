@@ -26,7 +26,7 @@ use App\Http\Controllers\Admin\LessonTypesController;
 use App\Http\Controllers\Admin\CourseContentTypeController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\LessonsController;
-
+use App\Http\Controllers\Frontend\FrontendController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,16 +37,19 @@ use App\Http\Controllers\Admin\LessonsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::redirect('/', '/login');
+//frontend route list
+Route::get('/', [FrontendController::class,'index'])->name('home');
+Route::get('/404', [FrontendController::class,'error404'])->name('error404');
+Route::post('/search', [FrontendController::class,'search'])->name('search');
+Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('article-details');
+
+
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
     }
     return redirect()->route('admin.home');
 });
-
-
-
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -201,10 +204,6 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
 
 
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
