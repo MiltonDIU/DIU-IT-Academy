@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cisco Networking Academy</title>
     <link rel="shortcut icon" href="images/fav.png')}}" type="image/x-icon">
 
@@ -30,35 +31,21 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Courses</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Login</a>
-                </li>
-                @foreach(\App\Models\Position::positionWiseMenu(1) as $menu)
+              @foreach(\App\Models\Position::positionWiseMenu(1) as $menu)
                     @if($menu->link_type=='1')
-                        <li><a class="dropdown-item" target="_blank" href="{{$menu->external_link}}">{{$menu->title}}</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{$menu->external_link}}">{{$menu->title}}</a>
+                        </li>
                     @else
-                        <li>
-                            <a class="dropdown-item" target="_blank" href="{{ route('article-details',[$menu->slug]) }}">
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="{{ route('article-details',[$menu->slug]) }}">
                                 {{$menu->title}}
                             </a>
                         </li>
                     @endif
                 @endforeach
-
-
                 <li class="nav-item">
-                    <a class="btn outline_btn_dark" href="#">Sign Up</a>
+                    <a class="btn outline_btn_dark" href="{{ route('register') }}">Sign Up</a>
                 </li>
             </ul>
         </div>

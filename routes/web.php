@@ -37,13 +37,6 @@ use App\Http\Controllers\Frontend\FrontendController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//frontend route list
-Route::get('/', [FrontendController::class,'index'])->name('home');
-Route::get('/404', [FrontendController::class,'error404'])->name('error404');
-Route::post('/search', [FrontendController::class,'search'])->name('search');
-Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('article-details');
-
-
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
@@ -211,3 +204,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/htest',[App\Http\Controllers\HomeController::class,'htest'])->name('htest');
+
+//frontend route list
+Route::get('/', [FrontendController::class,'index'])->name('home');
+Route::get('/404', [FrontendController::class,'error404'])->name('error404');
+Route::post('/search', [FrontendController::class,'search'])->name('search');
+Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('article-details');

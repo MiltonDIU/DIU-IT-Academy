@@ -1,5 +1,9 @@
 @extends('template.master')
 @section('content')
+
+
+
+
     <!-- ----------------------- Sign Up start ----------------------- -->
     <section id="login" class="ptb_100">
         <div class="container">
@@ -13,8 +17,8 @@
                 <div class="offset-xxl-1 col-xxl-5 offset-xl-1 col-xl-5 offset-lg-1 col-lg-5 offset-md-2 col-md-8 col-sm-12">
                     <div class="sign_box">
                         <h1 class="heading_section mb_36">Welcome Back!</h1>
-
-                        <form action="" class="sign_form mb_24">
+                        <form action="{{ route('login') }}" class="sign_form mb_24" method="POST">
+                            @csrf
                             <div class="form_wrapper mb_24">
                                 <input type="email" id="email" placeholder="Email">
                             </div>
