@@ -15,17 +15,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-//            PermissionsTableSeeder::class,
-//            RolesTableSeeder::class,
-//            PermissionRoleTableSeeder::class,
-//            UsersTableSeeder::class,
-//            RoleUserTableSeeder::class,
-//            SettingTableSeeder::class,
-//        CourseCategoryTableSeeder::class,
-//            CourseContentTypeTableSeeder::class,
-//            LessonTypeTableSeeder::class,
-//            RequiredSKillTableSeeder::class
-        SkillsCoveredTableSeeder::class,
+//           PermissionsTableSeeder::class,
+//           RolesTableSeeder::class,
+//           PermissionRoleTableSeeder::class,
+//           UsersTableSeeder::class,
+//           RoleUserTableSeeder::class,
+//           SettingTableSeeder::class,
+//       CourseCategoryTableSeeder::class,
+//           CourseContentTypeTableSeeder::class,
+//           LessonTypeTableSeeder::class,
+//           RequiredSKillTableSeeder::class,
+        // SkillsCoveredTableSeeder::class,
+            MenuPositionTableSeeder::class,
         ]);
     }
 }
