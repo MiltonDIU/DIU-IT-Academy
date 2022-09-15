@@ -15,48 +15,61 @@
                 <div class="offset-xxl-1 col-xxl-5 offset-xl-1 col-xl-5 offset-lg-1 col-lg-5 offset-md-2 col-md-8 col-sm-12">
                     <div class="sign_box">
                         <h1 class="heading_section mb_36">Join Us</h1>
+                        <form class="sign_form mb_24" method="POST" action="{{ route('register') }}">
+                            {{ csrf_field() }}
 
-                        <form action="" class="sign_form mb_24">
                             <div class="form_wrapper mb_24">
-                                <input type="text" id="name" placeholder="Name">
+                                <input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" required autofocus placeholder="{{ trans('global.user_name') }}" value="{{ old('name', null) }}">
+                                @if($errors->has('name'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('name') }}
+                                    </div>
+                                @endif
                             </div>
 
                             <div class="form_wrapper mb_24">
-                                <input type="email" id="email" placeholder="Email">
+                                <input type="email" name="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required placeholder="{{ trans('global.login_email') }}" value="{{ old('email', null) }}">
+                                @if($errors->has('email'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('email') }}
+                                    </div>
+                                @endif
                             </div>
-
                             <div class="form_wrapper mb_24">
-                                <input type="number" id="mobile" placeholder="Mobile">
+                                <input type="number" name="mobile" class="form-control{{ $errors->has('mobile') ? ' is-invalid' : '' }}" required placeholder="{{ trans('global.login_mobile') }}" value="{{ old('mobile', null) }}">
+                                @if($errors->has('mobile'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('mobile') }}
+                                    </div>
+                                @endif
                             </div>
-
                             <div class="form_wrapper mb_24">
-                                <input type="password" id="password" placeholder="Password">
+                                <input type="password" name="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required placeholder="{{ trans('global.login_password') }}">
+                                @if($errors->has('password'))
+                                    <div class="invalid-feedback">
+                                        {{ $errors->first('password') }}
+                                    </div>
+                                @endif
                             </div>
+                            <div class="form_wrapper mb_24">
+                                <input type="password" name="password_confirmation" class="form-control" required placeholder="{{ trans('global.login_password_confirmation') }}">
+                            </div>
+{{--                            <button type="submit" class="btn btn_dark">--}}
+{{--                                {{ trans('global.register') }}--}}
+{{--                            </button>--}}
 
                             <button type="submit" class="btn btn_dark">Sign Up</button>
                         </form>
 
-                        <p class="or_text mb_24">or Sign up with</p>
-
-                        <div class="with_btn mb_36">
-                            <button class="btn btn_google">
-                                <i class="fa-brands fa-google"></i>
-                                Google
-                            </button>
-                            <button class="btn btn_facebook">
-                                <i class="fa-brands fa-facebook-f"></i>
-                                Facebook
-                            </button>
-                        </div>
-
-                        <p class="or_text">Already have an account?<a href="#">Sign In</a></p>
+{{--                        <p class="or_text mb_24">or Sign up with</p>--}}
+                        <p class="or_text">Already have an account?<a href="{{ route('login') }}">Sign In</a></p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="dots">
-            <img src="images/dots2.png" alt="">
+            <img src="{{ url('template/images/dots2.png') }}" alt="">
         </div>
     </section>
     <!-- ----------------------- Sign Up end ----------------------- -->

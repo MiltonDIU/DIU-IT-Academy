@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\CourseContentTypeController;
 use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\LessonsController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\UserVerificationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,8 @@ use App\Http\Controllers\Frontend\FrontendController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('userVerification/{token}', [UserVerificationController::class,'@approve'])->name('userVerification');
+
 Route::get('/home', function () {
     if (session('status')) {
         return redirect()->route('admin.home')->with('status', session('status'));
@@ -59,7 +62,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
         'teams' => TeamsController::class,
         'course-categories' => CourseCategoryController::class,
         'skills-covereds' => SkillsCoveredController::class,
-        'required-s-kills' => RequiredSKillsController::class,
+        'required-skills' => RequiredSKillsController::class,
         'lesson-types' => LessonTypesController::class,
         'course-content-types' => CourseContentTypeController::class,
         'courses' => CoursesController::class,

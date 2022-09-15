@@ -7,25 +7,27 @@
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-12 col-sm-12">
                     <div class="banner_text">
                         <h6 class="text_orange mb_12" data-aos="fade-zoom-in">Cisco Networking Academy</h6>
-                        <h1 class="heading_one mb_24" data-aos="fade-up" data-aos-delay="100">Your Journey for Career Success</h1>
-                        <p class="text_light mb_48" data-aos="fade-up" data-aos-delay="200">- Join us today & get future ready!</p>
+                        <h1 class="heading_one mb_24" data-aos="fade-up" data-aos-delay="100">{{ $slider->title }}</h1>
+                        <p class="text_light mb_48" data-aos="fade-up" data-aos-delay="200">{{ $slider->sub_title }}</p>
 
-                        <div class="banner_search" data-aos="fade-up" data-aos-delay="300">
-                            <form action="" class="search_form">
-                                <div class="form_wrapper job_title_box">
-                                    <input type="text" placeholder="Find Courses" class="banner_search_input">
-                                </div>
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div>
+{{--                        <div class="banner_search" data-aos="fade-up" data-aos-delay="300">--}}
+{{--                            <form action="" class="search_form">--}}
+{{--                                <div class="form_wrapper job_title_box">--}}
+{{--                                    <input type="text" placeholder="Find Courses" class="banner_search_input">--}}
+{{--                                </div>--}}
+{{--                                <button type="submit"><i class="bi bi-search"></i></button>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
 
                 <div class="offset-xxl-1 col-xxl-6 col-xl-7 col-lg-7 col-md-12 col-sm-12">
                     <div class="banner_img" data-aos="fade-left" data-aos-delay="100" data-aos-duration="2000">
                         <div class="img_wrapper">
-                            <img src="{{ url('template/images/main-banner2.png')}}" alt="Cisco Networking Academy">
-                        </div>
+                            @if($slider->slider_image)
+                                   <img src="{{ $slider->slider_image->getUrl() }}" alt="Cisco Networking Academy">
+                            @endif
+                          </div>
                     </div>
                 </div>
             </div>

@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Menu;
+use App\Models\Slider;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index(){
-        return view('template.home');
+        $slider = Slider::where('is_active',1)->orderBy('updated_at','desc')->get()->first();
+        $testimonials = Testimonial::where('is_active',1)->orderBy('updated_at','desc')->get()->take(5);
+        return view('template.home',compact('slider'));
     }
 
 
