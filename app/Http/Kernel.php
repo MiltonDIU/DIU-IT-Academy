@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckProfileContentIsUpdate;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -39,8 +40,8 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\AuthGates::class,
             \App\Http\Middleware\SetLocale::class,
-            \App\Http\Middleware\ApprovalMiddleware::class,
             \App\Http\Middleware\VerificationMiddleware::class,
+            \App\Http\Middleware\ApprovalMiddleware::class,
             CheckProfileContentIsUpdate::class
         ],
 
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin'     => \App\Http\Middleware\IsAdmin::class
 
     ];
 }

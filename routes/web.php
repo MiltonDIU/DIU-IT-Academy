@@ -47,7 +47,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','admin']], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resources([
         'positions' => PositionController::class,
@@ -193,10 +193,8 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
     }
 
 });
-
-
-
-
+Auth::routes(['register' => true]);
+Route::get('userVerification/{token}', [UserVerificationController::class ,'approve'])->name('userVerification');
 
 
 

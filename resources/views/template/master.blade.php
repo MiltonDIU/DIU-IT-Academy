@@ -10,7 +10,7 @@
 
     <!-- CSS Start -->
     <link rel="stylesheet" href="{{ url('template/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ url('template/css/all.min.css')}}">
     <link rel="stylesheet" href="{{ url('template/css/aos.css')}}">
     <link rel="stylesheet" href="{{ url('template/css/style.css')}}">

@@ -25,7 +25,7 @@ class FrontendController extends Controller
             $article = Article::where('menu_id',$menu->id)->first();
 
             if ($article!=null){
-                return view('theme.article-details',compact('article'));
+                return view('template.article-details',compact('article'));
             }
             else{
                 return redirect(route('error404'));

@@ -29,12 +29,11 @@
                                     </div>
                                 @endif
                             </div>
-                            <button type="submit" class="btn btn_dark"> {{ trans('global.login') }} </button>
+                            <button type="submit" class="btn btn_dark"> {{ trans('global.send_password') }} </button>
                         </form>
                         <div class="login_bottom">
-                            <p class="or_text">Don't have an account?<a href="#">Signup</a></p>
-
-                            <p class="or_text"><a href="#" class="forgot">Forgot Password</a></p>
+                            <p class="or_text">Don't have an account?<a href="{{ route('login') }}">Signup</a></p>
+                            <p class="or_text">Already have an account?<a href="{{ route('login') }}">Sign In</a></p>
                         </div>
                     </div>
                 </div>

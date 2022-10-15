@@ -187,7 +187,8 @@
             }
 
             var allEditors = document.querySelectorAll('.ckeditor');
-            for (var i = 0; i < allEditors.length; ++i) {
+            console.log(allEditors);
+            for (var i = 0; i < document.querySelectorAll('.ckeditor').length; ++i) {
                 ClassicEditor.create(
                     allEditors[i], {
                         extraPlugins: [SimpleUploadAdapter]

@@ -25,6 +25,7 @@ class VerifyUserNotification extends Notification
 
     public function toMail($notifiable)
     {
+        dd(route('userVerification', $this->user->verification_token));
         return (new MailMessage())
             ->line(trans('global.verifyYourUser'))
             ->action(trans('global.clickHereToVerify'), route('userVerification', $this->user->verification_token))
