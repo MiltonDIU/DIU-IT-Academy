@@ -3,53 +3,53 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreRequiredSKillRequest;
-use App\Http\Requests\UpdateRequiredSKillRequest;
-use App\Http\Resources\Admin\RequiredSKillResource;
-use App\Models\RequiredSKill;
+use App\Http\Requests\StoreRequiredSkillRequest;
+use App\Http\Requests\UpdateRequiredSkillRequest;
+use App\Http\Resources\Admin\RequiredSkillResource;
+use App\Models\RequiredSkill;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RequiredSKillsApiController extends Controller
+class RequiredSkillsApiController extends Controller
 {
     public function index()
     {
         abort_if(Gate::denies('required_skill_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new RequiredSKillResource(RequiredSKill::all());
+        return new RequiredSkillResource(RequiredSkill::all());
     }
 
-    public function store(StoreRequiredSKillRequest $request)
+    public function store(StoreRequiredSkillRequest $request)
     {
-        $requiredSKill = RequiredSKill::create($request->all());
+        $RequiredSkill = RequiredSkill::create($request->all());
 
-        return (new RequiredSKillResource($requiredSKill))
+        return (new RequiredSkillResource($RequiredSkill))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
 
-    public function show(RequiredSKill $requiredSKill)
+    public function show(RequiredSkill $RequiredSkill)
     {
-        abort_if(Gate::denies('required_s_kill_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('required_skill_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new RequiredSKillResource($requiredSKill);
+        return new RequiredSkillResource($RequiredSkill);
     }
 
-    public function update(UpdateRequiredSKillRequest $request, RequiredSKill $requiredSKill)
+    public function update(UpdateRequiredSkillRequest $request, RequiredSkill $RequiredSkill)
     {
-        $requiredSKill->update($request->all());
+        $RequiredSkill->update($request->all());
 
-        return (new RequiredSKillResource($requiredSKill))
+        return (new RequiredSkillResource($RequiredSkill))
             ->response()
             ->setStatusCode(Response::HTTP_ACCEPTED);
     }
 
-    public function destroy(RequiredSKill $requiredSKill)
+    public function destroy(RequiredSkill $RequiredSkill)
     {
-        abort_if(Gate::denies('required_s_kill_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('required_skill_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $requiredSKill->delete();
+        $RequiredSkill->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

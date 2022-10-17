@@ -120,7 +120,8 @@
                     { data: 'duration', name: 'duration' },
                     { data: 'class_start_date', name: 'class_start_date' },
                     { data: 'class_end_date', name: 'class_end_date' },
-                    { data: 'course_content_type', name: 'course_content_types.title' },
+                   { data: 'course_content_type', name: 'course_content_types.title' },
+
                     { data: 'skill_covered', name: 'skill_covereds.title' },
                     { data: 'required_skill', name: 'required_skills.title' },
                     { data: 'is_active', name: 'is_active' },

@@ -142,7 +142,7 @@
                                 <i class="fa-fw fas fa-list-ul nav-icon">
 
                                 </i>
-                                {{ trans('cruds.requiredSKill.title') }}
+                                {{ trans('cruds.RequiredSkill.title') }}
                             </a>
                         </li>
                     @endcan

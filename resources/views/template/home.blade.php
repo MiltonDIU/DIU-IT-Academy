@@ -1,6 +1,7 @@
 @extends('template.master')
 @section('content')
     <!-- ----------------------- Main Banner start ----------------------- -->
+    @if($slider!=null)
     <section id="main_banner">
         <div class="container">
             <div class="row">
@@ -33,6 +34,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!-- ----------------------- Main Banner end ----------------------- -->
 
     <!-- ----------------------- Get Started start ----------------------- -->
@@ -44,7 +46,7 @@
                         <h3 class="heading_two">Upskill Yourself</h3>
                         <h4 class="heading_two mb_48">Reach Professional Goals</h4>
 
-                        <a class="btn outline_btn_white" href="#">Get Started</a>
+                        <a class="btn outline_btn_white" href="{{ route('register') }}">Get Started</a>
                     </div>
                 </div>
 

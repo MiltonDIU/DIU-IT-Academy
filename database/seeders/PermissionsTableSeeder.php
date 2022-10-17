@@ -372,19 +372,19 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 89,
-                'title' => 'required_s_kill_create',
+                'title' => 'required_skill_create',
             ],
             [
                 'id'    => 90,
-                'title' => 'required_s_kill_edit',
+                'title' => 'required_skill_edit',
             ],
             [
                 'id'    => 91,
-                'title' => 'required_s_kill_show',
+                'title' => 'required_skill_show',
             ],
             [
                 'id'    => 92,
-                'title' => 'required_s_kill_delete',
+                'title' => 'required_skill_delete',
             ],
             [
                 'id'    => 93,
@@ -469,6 +469,27 @@ class PermissionsTableSeeder extends Seeder
             [
                 'id'    => 113,
                 'title' => 'lesson_access',
+            ],
+
+            [
+                'id'    => 114,
+                'title' => 'required-skills_create',
+            ],
+            [
+                'id'    => 115,
+                'title' => 'required-skills_edit',
+            ],
+            [
+                'id'    => 116,
+                'title' => 'required-skills_show',
+            ],
+            [
+                'id'    => 117,
+                'title' => 'required-skills_delete',
+            ],
+            [
+                'id'    => 118,
+                'title' => 'required-skills_access',
             ],
         ];
 

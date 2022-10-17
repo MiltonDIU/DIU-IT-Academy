@@ -475,7 +475,7 @@ return [
             'is_active_helper'  => ' ',
         ],
     ],
-    'requiredSKill' => [
+    'RequiredSkill' => [
         'title'          => 'Required SKills',
         'title_singular' => 'Required SKill',
         'fields'         => [

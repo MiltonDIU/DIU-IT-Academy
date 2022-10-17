@@ -90,7 +90,7 @@ class Course extends Model implements HasMedia
 
     public function required_skills()
     {
-        return $this->belongsToMany(RequiredSKill::class);
+        return $this->belongsToMany(RequiredSkill::class);
     }
 
     public function getPictureAttribute()

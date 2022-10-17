@@ -8,18 +8,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RequiredSKill extends Model
+class RequiredSkill extends Model
 {
     use SoftDeletes;
     use Auditable;
     use HasFactory;
-
+protected $table = "required_skills";
     public const IS_ACTIVE_SELECT = [
         '1' => 'Yes',
         '0' => 'No',
     ];
 
-    public $table = 'required_skills';
 
     protected $dates = [
         'created_at',
@@ -36,7 +35,7 @@ class RequiredSKill extends Model
         'deleted_at',
     ];
 
-    public function requiredSkillCourses()
+    public function RequiredSkillCourses()
     {
         return $this->belongsToMany(Course::class);
     }

@@ -10,7 +10,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\CourseContentType;
-use App\Models\RequiredSKill;
+use App\Models\RequiredSkill;
 use App\Models\SkillsCovered;
 use Gate;
 use Illuminate\Http\Request;
@@ -125,7 +125,7 @@ class CoursesController extends Controller
 
         $skill_covereds = SkillsCovered::pluck('title', 'id');
 
-        $required_skills = RequiredSKill::pluck('title', 'id');
+        $required_skills = RequiredSkill::pluck('title', 'id');
 
         return view('admin.courses.create', compact('course_categories', 'course_content_types', 'required_skills', 'skill_covereds'));
     }
@@ -135,7 +135,10 @@ class CoursesController extends Controller
         $course = Course::create($request->all());
         $course->course_content_types()->sync($request->input('course_content_types', []));
         $course->skill_covereds()->sync($request->input('skill_covereds', []));
+
         $course->required_skills()->sync($request->input('required_skills', []));
+
+
         if ($request->input('picture', false)) {
             $course->addMedia(storage_path('tmp/uploads/' . basename($request->input('picture'))))->toMediaCollection('picture');
         }
@@ -157,10 +160,10 @@ class CoursesController extends Controller
 
         $skill_covereds = SkillsCovered::pluck('title', 'id');
 
-        $required_skills = RequiredSKill::pluck('title', 'id');
+        $required_skills = RequiredSkill::pluck('title', 'id');
 
         $course->load('course_category', 'course_content_types', 'skill_covereds', 'required_skills');
-
+dd($course);
         return view('admin.courses.edit', compact('course', 'course_categories', 'course_content_types', 'required_skills', 'skill_covereds'));
     }
 

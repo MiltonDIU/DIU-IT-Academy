@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\RequiredSKill;
+use App\Models\RequiredSkill;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 
-class StoreRequiredSKillRequest extends FormRequest
+class StoreRequiredSkillRequest extends FormRequest
 {
     public function authorize()
     {
-        return Gate::allows('required_s_kill_create');
+        return Gate::allows('required_skill_create');
     }
 
     public function rules()

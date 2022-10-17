@@ -3,7 +3,7 @@
 
     <div class="card">
         <div class="card-header">
-            {{ trans('global.show') }} {{ trans('cruds.requiredSKill.title') }}
+            {{ trans('global.show') }} {{ trans('cruds.RequiredSkill.title') }}
         </div>
 
         <div class="card-body">
@@ -17,34 +17,34 @@
                     <tbody>
                     <tr>
                         <th>
-                            {{ trans('cruds.requiredSKill.fields.id') }}
+                            {{ trans('cruds.RequiredSkill.fields.id') }}
                         </th>
                         <td>
-                            {{ $requiredSKill->id }}
+                            {{ $RequiredSkill->id }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.requiredSKill.fields.title') }}
+                            {{ trans('cruds.RequiredSkill.fields.title') }}
                         </th>
                         <td>
-                            {{ $requiredSKill->title }}
+                            {{ $RequiredSkill->title }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.requiredSKill.fields.slug') }}
+                            {{ trans('cruds.RequiredSkill.fields.slug') }}
                         </th>
                         <td>
-                            {{ $requiredSKill->slug }}
+                            {{ $RequiredSkill->slug }}
                         </td>
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.requiredSKill.fields.is_active') }}
+                            {{ trans('cruds.RequiredSkill.fields.is_active') }}
                         </th>
                         <td>
-                            {{ App\Models\RequiredSKill::IS_ACTIVE_SELECT[$requiredSKill->is_active] ?? '' }}
+                            {{ App\Models\RequiredSkill::IS_ACTIVE_SELECT[$RequiredSkill->is_active] ?? '' }}
                         </td>
                     </tr>
                     </tbody>
@@ -71,7 +71,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane" role="tabpanel" id="required_skill_courses">
-                @includeIf('admin.requiredSKills.relationships.requiredSkillCourses', ['courses' => $requiredSKill->requiredSkillCourses])
+                @includeIf('admin.RequiredSkills.relationships.RequiredSkillCourses', ['courses' => $RequiredSkill->RequiredSkillCourses])
             </div>
         </div>
     </div>

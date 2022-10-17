@@ -21,7 +21,7 @@ use App\Http\Controllers\Admin\ContactsController;
 use App\Http\Controllers\Admin\TeamsController;
 use App\Http\Controllers\Admin\CoursesController;
 use  App\Http\Controllers\Admin\SkillsCoveredController;
-use App\Http\Controllers\Admin\RequiredSKillsController;
+use App\Http\Controllers\Admin\RequiredSkillsController;
 use App\Http\Controllers\Admin\LessonTypesController;
 use App\Http\Controllers\Admin\CourseContentTypeController;
 use App\Http\Controllers\Admin\CourseCategoryController;
@@ -62,7 +62,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','ad
         'teams' => TeamsController::class,
         'course-categories' => CourseCategoryController::class,
         'skills-covereds' => SkillsCoveredController::class,
-        'required-skills' => RequiredSKillsController::class,
+        'required-skills' => RequiredSkillsController::class,
         'lesson-types' => LessonTypesController::class,
         'course-content-types' => CourseContentTypeController::class,
         'courses' => CoursesController::class,
@@ -83,12 +83,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','ad
     Route::delete('skills-covereds/destroy', [SkillsCoveredController::class,'massDestroy'])->name('skills-covereds.massDestroy');
 
     // Required S Kills
-    Route::delete('required-skills/destroy', [RequiredSKillsController::class,'massDestroy'])->name('required-s-kills.massDestroy');
+    Route::delete('required-skills/destroy', [RequiredSkillsController::class,'massDestroy'])->name('required-skills.massDestroy');
     // Lesson Types
     Route::delete('lesson-types/destroy', [LessonTypesController::class,'LessonTypesController@massDestroy'])->name('lesson-types.massDestroy');
 
     // Course Content Type
     Route::delete('course-content-types/destroy', [CourseContentTypeController::class,'massDestroy'])->name('course-content-types.massDestroy');
+
+
 
     // Courses
     Route::delete('courses/destroy', [CoursesController::class,'massDestroy'])->name('courses.massDestroy');
@@ -97,14 +99,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth','ad
 
     // Lessons
     Route::delete('lessons/destroy', [LessonsController::class,'massDestroy'])->name('lessons.massDestroy');
-
-
-
-
-
-
-
-
 
 
 

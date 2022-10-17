@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\RequiredSKill;
+use App\Models\RequiredSkill;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class RequiredSKillTableSeeder extends Seeder
+class RequiredSkillTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -35,7 +35,7 @@ class RequiredSKillTableSeeder extends Seeder
         foreach ($skills as $skill){
             $skill['slug'] = \Str::slug($skill['title']) ;
             $skill['is_active'] = 1 ;
-            RequiredSKill::insert($skill);
+            RequiredSkill::insert($skill);
         }
     }
 }

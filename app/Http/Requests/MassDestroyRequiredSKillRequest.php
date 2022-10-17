@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Models\RequiredSKill;
+use App\Models\RequiredSkill;
 use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 use Symfony\Component\HttpFoundation\Response;
 
-class MassDestroyRequiredSKillRequest extends FormRequest
+class MassDestroyRequiredSkillRequest extends FormRequest
 {
     public function authorize()
     {
-        abort_if(Gate::denies('required_s_kill_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('required_skill_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return true;
     }
