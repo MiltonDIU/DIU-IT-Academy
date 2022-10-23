@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 //           CourseContentTypeTableSeeder::class,
 //           LessonTypeTableSeeder::class,
            RequiredSkillTableSeeder::class,
-         SkillsCoveredTableSeeder::class,
-            MenuPositionTableSeeder::class,
+//         SkillsCoveredTableSeeder::class,
+//            MenuPositionTableSeeder::class,
         ]);
     }
 }

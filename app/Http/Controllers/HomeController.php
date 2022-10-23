@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
 
     /**
@@ -51,5 +51,25 @@ $this->plusMinus($arr);
        echo $negativeCount / $len."     ";
        echo $zeroCount / $len."     ";
       echo "/n";
+    }
+
+
+    public function apiTest(){
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.1card.com.bd/danubehome/fail?order_id=DAN635196f09199b',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+//        dd(( json_decode($response)));
+        $asd=  json_decode($response);
+        return $asd[0]->id;
     }
 }

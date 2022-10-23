@@ -198,7 +198,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/htest',[App\Http\Controllers\HomeController::class,'htest'])->name('htest');
+Route::get('/api-test',[App\Http\Controllers\HomeController::class,'apiTest'])->name('apiTest');
 
 //frontend route list
 Route::get('/', [FrontendController::class,'index'])->name('home');

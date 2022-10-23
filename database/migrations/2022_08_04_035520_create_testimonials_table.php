@@ -19,6 +19,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('designation');
             $table->string('organization_name')->nullable();
             $table->string('about')->nullable();
+            $table->string('is_active');
             $table->timestamps();
             $table->softDeletes();
         });
