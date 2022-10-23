@@ -163,7 +163,7 @@ class CoursesController extends Controller
         $required_skills = RequiredSkill::pluck('title', 'id');
 
         $course->load('course_category', 'course_content_types', 'skill_covereds', 'required_skills');
-dd($course);
+
         return view('admin.courses.edit', compact('course', 'course_categories', 'course_content_types', 'required_skills', 'skill_covereds'));
     }
 

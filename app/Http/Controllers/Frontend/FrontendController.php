@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Course;
+use App\Models\Lesson;
 use App\Models\Menu;
 use App\Models\Slider;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
@@ -66,4 +68,22 @@ class FrontendController extends Controller
             return view('admin.item.getItem', compact('articles'));
         }
     }
+
+    public function courses(){
+       $courses = Course::where('is_active','1')->get();
+        return view('template.course',compact('courses'));
+
+    }
+public function coursesDetails($id,$slug){
+        $course = Course::where('id',$id)->where('is_active','1')->first();
+        $lessons = Lesson::where('course_id',$id)->where('is_active','1')->get()->groupBy('lesson_type_id');
+        return view('template.course-details',compact('course','lessons'));
+}
+
+public function coursesEnrollment(Request $request){
+       $course= Course::find($request->input('course_id'));
+       $course->user()->sync(Auth::id());
+
+}
+
 }

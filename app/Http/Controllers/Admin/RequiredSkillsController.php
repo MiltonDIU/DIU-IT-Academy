@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyRequiredSkillRequest;
 use App\Http\Requests\StoreRequiredSkillRequest;
 use App\Http\Requests\UpdateRequiredSkillRequest;
+use App\Models\LessonType;
 use App\Models\RequiredSkill;
 use Gate;
 use Illuminate\Http\Request;
@@ -18,48 +19,49 @@ class RequiredSkillsController extends Controller
     {
 
         abort_if(Gate::denies('required_skill_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-dd(RequiredSkill::all());
-        if ($request->ajax()) {
-            $query = RequiredSkill::query()->select(sprintf('%s.*', (new RequiredSkill())->table));
-            $table = Datatables::of($query);
+//        if ($request->ajax()) {
+//            $query = RequiredSkill::query()->select(sprintf('%s.*', (new RequiredSkill())->table));
+//            $table = Datatables::of($query);
+//
+//            $table->addColumn('placeholder', '&nbsp;');
+//            $table->addColumn('actions', '&nbsp;');
+//
+//            $table->editColumn('actions', function ($row) {
+//                $viewGate = 'required_skill_show';
+//                $editGate = 'required_skill_edit';
+//                $deleteGate = 'required_skill_delete';
+//                $crudRoutePart = 'required-skills';
+//
+//                return view('partials.datatablesActions', compact(
+//                    'viewGate',
+//                    'editGate',
+//                    'deleteGate',
+//                    'crudRoutePart',
+//                    'row'
+//                ));
+//            });
+//
+//            $table->editColumn('id', function ($row) {
+//                return $row->id ? $row->id : '';
+//            });
+//            $table->editColumn('title', function ($row) {
+//                return $row->title ? $row->title : '';
+//            });
+//            $table->editColumn('slug', function ($row) {
+//                return $row->slug ? $row->slug : '';
+//            });
+//            $table->editColumn('is_active', function ($row) {
+//                return $row->is_active ? RequiredSkill::IS_ACTIVE_SELECT[$row->is_active] : '';
+//            });
+//
+//            $table->rawColumns(['actions', 'placeholder']);
+//
+//            return $table->make(true);
+//        }
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+        $requiredSkills = RequiredSkill::where('is_active','1')->get();
 
-            $table->editColumn('actions', function ($row) {
-                $viewGate = 'required_skill_show';
-                $editGate = 'required_skill_edit';
-                $deleteGate = 'required_skill_delete';
-                $crudRoutePart = 'required-skills';
-
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
-
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
-            });
-            $table->editColumn('title', function ($row) {
-                return $row->title ? $row->title : '';
-            });
-            $table->editColumn('slug', function ($row) {
-                return $row->slug ? $row->slug : '';
-            });
-            $table->editColumn('is_active', function ($row) {
-                return $row->is_active ? RequiredSkill::IS_ACTIVE_SELECT[$row->is_active] : '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder']);
-
-            return $table->make(true);
-        }
-
-        return view('admin.RequiredSkills.index');
+        return view('admin.RequiredSkills.index',compact('requiredSkills'));
     }
 
     public function create()

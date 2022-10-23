@@ -32,6 +32,7 @@ class Lesson extends Model
         'slug',
         'course_id',
         'lesson_type_id',
+        'course_content_type_id',
         'is_active',
         'created_at',
         'updated_at',
@@ -42,7 +43,10 @@ class Lesson extends Model
     {
         return $this->belongsTo(Course::class, 'course_id');
     }
-
+    public function course_content_types()
+    {
+        return $this->belongsTo(CourseContentType::class);
+    }
     public function lesson_type()
     {
         return $this->belongsTo(LessonType::class, 'lesson_type_id');

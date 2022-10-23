@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
-use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use \DateTimeInterface;
+use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RequiredSkill extends Model
 {
+    use HasFactory;
     use SoftDeletes;
     use Auditable;
-    use HasFactory;
-protected $table = "required_skills";
+
     public const IS_ACTIVE_SELECT = [
         '1' => 'Yes',
         '0' => 'No',
@@ -35,13 +35,12 @@ protected $table = "required_skills";
         'deleted_at',
     ];
 
-    public function RequiredSkillCourses()
-    {
-        return $this->belongsToMany(Course::class);
-    }
+    protected $table = "required_skills";
 
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+
 }

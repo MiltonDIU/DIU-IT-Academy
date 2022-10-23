@@ -15,97 +15,38 @@
         </div>
 
         <div class="card-body">
-            <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-RequiredSkill">
+            <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-LessonType">
                 <thead>
                 <tr>
-                    <th width="10">
+                    <th>
+                        {{ trans('cruds.lessonType.fields.id') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.lessonType.fields.title') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.lessonType.fields.slug') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.lessonType.fields.is_active') }}
+                    </th>
 
-                    </th>
-                    <th>
-                        {{ trans('cruds.RequiredSkill.fields.id') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.RequiredSkill.fields.title') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.RequiredSkill.fields.slug') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.RequiredSkill.fields.is_active') }}
-                    </th>
-                    <th>
-                        &nbsp;
-                    </th>
                 </tr>
                 </thead>
+                <tbody>
+                @foreach($requiredSkills as $key=> $requiredSkill)
+                    <tr>
+                        <td>{{$requiredSkill->id}}</td>
+                        <td>{{$requiredSkill->title}}</td>
+                        <td>{{$requiredSkill->slug}}</td>
+                        <td>{{$requiredSkill->is_active}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
             </table>
         </div>
     </div>
 
 
 
-@endsection
-@section('scripts')
-    @parent
-    <script>
-        $(function () {
-            let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-            @can('required_skill_delete')
-            let deleteButtonTrans = '{{ trans('global.datatables.delete') }}';
-            let deleteButton = {
-                text: deleteButtonTrans,
-                url: "{{ route('admin.required-skills.massDestroy') }}",
-                className: 'btn-danger',
-                action: function (e, dt, node, config) {
-                    var ids = $.map(dt.rows({ selected: true }).data(), function (entry) {
-                        return entry.id
-                    });
-
-                    if (ids.length === 0) {
-                        alert('{{ trans('global.datatables.zero_selected') }}')
-
-                        return
-                    }
-
-                    if (confirm('{{ trans('global.areYouSure') }}')) {
-                        $.ajax({
-                            headers: {'x-csrf-token': _token},
-                            method: 'POST',
-                            url: config.url,
-                            data: { ids: ids, _method: 'DELETE' }})
-                            .done(function () { location.reload() })
-                    }
-                }
-            }
-            dtButtons.push(deleteButton)
-            @endcan
-
-            let dtOverrideGlobals = {
-                buttons: dtButtons,
-                processing: true,
-                serverSide: true,
-                retrieve: true,
-                aaSorting: [],
-                ajax: "{{ route('admin.required-skills.index') }}",
-                columns: [
-                    { data: 'placeholder', name: 'placeholder' },
-                    { data: 'id', name: 'id' },
-                    { data: 'title', name: 'title' },
-                    { data: 'slug', name: 'slug' },
-                    { data: 'is_active', name: 'is_active' },
-                    { data: 'actions', name: '{{ trans('global.actions') }}' }
-                ],
-                orderCellsTop: true,
-                order: [[ 1, 'desc' ]],
-                pageLength: 100,
-            };
-            let table = $('.datatable-RequiredSkill').DataTable(dtOverrideGlobals);
-            $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
-                $($.fn.dataTable.tables(true)).DataTable()
-                    .columns.adjust();
-            });
-
-        });
-
-    </script>
 @endsection

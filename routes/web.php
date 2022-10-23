@@ -202,6 +202,9 @@ Route::get('/api-test',[App\Http\Controllers\HomeController::class,'apiTest'])->
 
 //frontend route list
 Route::get('/', [FrontendController::class,'index'])->name('home');
+Route::get('/courses', [FrontendController::class,'courses'])->name('courses');
+Route::get('/courses/{id}/{slug}', [FrontendController::class,'coursesDetails'])->name('course-details');
+Route::post('/courses-enrollment', [FrontendController::class,'coursesEnrollment'])->name('courses-enrollment');
 Route::get('/404', [FrontendController::class,'error404'])->name('error404');
 Route::post('/search', [FrontendController::class,'search'])->name('search');
 Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('article-details');

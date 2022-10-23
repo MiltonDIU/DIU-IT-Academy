@@ -45,4 +45,8 @@ class CourseContentType extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function lesson(){
+        return $this->hasMany(Lesson::class);
+    }
 }
