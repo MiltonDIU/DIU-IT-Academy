@@ -76,14 +76,8 @@ class FrontendController extends Controller
     }
 public function coursesDetails($id,$slug){
         $course = Course::where('id',$id)->where('is_active','1')->first();
-        $lessons = Lesson::where('course_id',$id)->where('is_active','1')->get()->groupBy('lesson_type_id');
-        return view('template.course-details',compact('course','lessons'));
+
+//        $lessons = Lesson::where('course_id',$id)->where('is_active','1')->get()->groupBy('lesson_type_id');
+        return view('template.course-details',compact('course'));
 }
-
-public function coursesEnrollment(Request $request){
-       $course= Course::find($request->input('course_id'));
-       $course->user()->sync(Auth::id());
-
-}
-
 }

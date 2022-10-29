@@ -47,9 +47,10 @@
                                 <h6 class="heading_four mb_12">This Course Includes</h6>
 
                                 <ul class="course_includes_list">
-                                    @foreach($lessons as $key=>$lesson)
 
-                                    <li><i class="bi {{ $lesson[$key]->lesson_type->css_class }}"></i> {{ count($lesson) }} {{ $lesson[$key]->lesson_type->title }}</li>
+                                    @foreach($course->courseLessons->groupBy('lesson_type_id') as $key=>$lesson)
+                                    <li><i class="bi {{ $lesson[0]->lesson_type->css_class }}"></i> {{ count($lesson) }} {{ $lesson[0]->lesson_type->title }}</li>
+
                                     @endforeach
                                 </ul>
                             </div>
@@ -92,97 +93,108 @@
                         <div class="coures_content_box mb_100" data-aos="fade-up" data-aos-delay="200">
                             <div class="accordion" id="accordionExample">
 
+                                 @foreach( $course->courseLessons->groupBy('course_content_type_id') as $key=>$course_types)
+                                 <div class="accordion-item">
+                                     <h2 class="accordion-header" id="headingOne{{$key}}">
+                                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{$key}}" aria-expanded="{{ $key==0?"true":"false" }}" aria-controls="collapseOne{{$key}}">
+                                             {{ $course_types[0]->course_content_types->title  }}
+                                         </button>
+                                     </h2>
 
-                                @foreach($course->course_content_types as $key=>$course_types)
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingOne{{$key}}">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{$key}}" aria-expanded="{{ $key==0?"true":"false" }}" aria-controls="collapseOne{{$key}}">
-                                            {{ $course_types->title }}
-                                        </button>
-                                    </h2>
+                                     <div id="collapseOne{{$key}}" class="accordion-collapse collapse {{ $key==1?"show":"" }}" aria-labelledby="headingOne{{$key}}" data-bs-parent="#accordionExample">
+                                         <div class="accordion-body">
 
-                                    <div id="collapseOne{{$key}}" class="accordion-collapse collapse {{ $key==0?"show":"" }}" aria-labelledby="headingOne{{$key}}" data-bs-parent="#accordionExample">
-                                        <div class="accordion-body">
-                                            <ul class="checkmark">
-@foreach($course_types->lesson as $lesson)
-    @if($lesson->lesson_type_id==2)
-                                                <li>
-                                                   {{ $lesson->title }}
-                                                    <span class="course_quiz">
-                                                        <i class="bi bi-question-circle-fill"></i>
-                                                    </span>
-                                                </li>
-                                                    @else
-                                                        <li> {{ $lesson->title }}</li>
-                                                    @endif
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+                                             <ul class="checkmark">
+                                                 @foreach($course_types as $lesson)
+                                                     @if($lesson->lesson_type_id==2)
+                                                         <li>
+                                                             {{ $lesson->title }}
+                                                             <span class="course_quiz">
+                                                         <i class="bi bi-question-circle-fill"></i>
+                                                     </span>
+                                                         </li>
+                                                     @else
+                                                         <li> {{ $lesson->title }}</li>
+                                                     @endif
+                                                 @endforeach
+                                             </ul>
 
-                    <div class="offset-xxl-1 col-xxl-4 offset-xl-1 col-xl-4 offset-lg-1 col-lg-4 col-md-12 col-sm-12">
-                        <div class="course_info">
-                            <div class="course_info_img mb_24">
-                                @if($course->picture)
-                                    <img src="{{ $course->picture->getUrl() }}" alt="course_img" class="course image">
-                                @endif
-                            </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 @endforeach
+                             </div>
+                         </div>
+                     </div>
 
-                            <div class="course_enrollment_btn mb_36">
+                     <div class="offset-xxl-1 col-xxl-4 offset-xl-1 col-xl-4 offset-lg-1 col-lg-4 col-md-12 col-sm-12">
+                         <div class="course_info">
+                             <div class="course_info_img mb_24">
+                                 @if($course->picture)
+                                     <img src="{{ $course->picture->getUrl() }}" alt="course_img" class="course image">
+                                 @endif
+                             </div>
 
-                                <form method="POST" action="{{ route("courses-enrollment") }}" enctype="multipart/form-data">
-                                    @csrf
-
-                                    <input type="hidden" name="course_id" value="{{ $course->id }}">
-
-                                <button type="submit" class="btn btn_orange">
-                                    Request Enrollment
-                                </button>
-
-                                </form>
-                            </div>
-
-                            <div class="course_includes mb_36">
-                                <h6 class="heading_four mb_12">This Course Includes</h6>
-
-                                <ul class="course_includes_list">
-                                    @foreach($lessons as $key=>$lesson)
-
-                                        <li><i class="bi {{ $lesson[$key]->lesson_type->css_class }}"></i> {{ count($lesson) }} {{ $lesson[$key]->lesson_type->title }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-
-                            <div class="course_skills">
-                                <h6 class="heading_four mb_12">Skills Covered</h6>
-
-                                <ul class="checkmark">
-                                    @foreach($course->skill_covereds as $key=>$skill)
-                                        <li>{{ $skill->title }} </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ----------------------- Course main end ----------------------- -->
+                             <div class="course_enrollment_btn mb_36">
+@guest
+     <form method="POST" action="{{ route("courses-enrollment") }}" enctype="multipart/form-data">
+         @csrf
+         <input type="hidden" name="course_id" value="{{ $course->id }}">
+         <button type="submit" class="btn btn_orange">
+             Request Enrollment
+         </button>
+     </form>
+@else
+     @if(\App\Helpers\SettingsHelper::enrollment($course->id)==true)
+         <a href="{{ route('my-course') }}" class="btn btn_orange"> Start lesson </a>
+     @else
+         <form method="POST" action="{{ route("courses-enrollment") }}" enctype="multipart/form-data">
+             @csrf
+             <input type="hidden" name="course_id" value="{{ $course->id }}">
+             <button type="submit" class="btn btn_orange">
+                 Request Enrollment
+             </button>
+         </form>
+     @endif
+@endguest
 
 
-@endsection
-@push('style')
-    <style>
-        .accordion-item{
-            padding-bottom: 10px;
-        }
-    </style>
+                             </div>
+
+                             <div class="course_includes mb_36">
+                                 <h6 class="heading_four mb_12">This Course Includes</h6>
+
+                                 <ul class="course_includes_list">
+
+                                     @foreach($course->courseLessons->groupBy('lesson_type_id') as $key=>$lesson)
+                                         <li><i class="bi {{ $lesson[0]->lesson_type->css_class }}"></i> {{ count($lesson) }} {{ $lesson[0]->lesson_type->title }}</li>
+                                     @endforeach
+                                 </ul>
+                             </div>
+
+                             <div class="course_skills">
+                                 <h6 class="heading_four mb_12">Skills Covered</h6>
+
+                                 <ul class="checkmark">
+                                     @foreach($course->skill_covereds as $key=>$skill)
+                                         <li>{{ $skill->title }} </li>
+                                     @endforeach
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+     <!-- ----------------------- Course main end ----------------------- -->
+ @endsection
+ @push('style')
+     <style>
+        .course_content .accordion-item{
+             padding-bottom: 10px;
+         }
+     </style>
 
 
-@endpush
+ @endpush

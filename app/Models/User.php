@@ -44,6 +44,12 @@ class User extends Authenticatable
         'email_verified_at',
         'password',
         'approved',
+        'profession',
+        'date_of_birth',
+        'gender',
+        'nid',
+        'address',
+        'about',
         'verified',
         'verified_at',
         'verification_token',
@@ -52,7 +58,6 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at',
     ];
-
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);

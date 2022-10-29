@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\LessonsController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\UserVerificationController;
+use App\Http\Controllers\Member\MemberController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -204,7 +205,16 @@ Route::get('/api-test',[App\Http\Controllers\HomeController::class,'apiTest'])->
 Route::get('/', [FrontendController::class,'index'])->name('home');
 Route::get('/courses', [FrontendController::class,'courses'])->name('courses');
 Route::get('/courses/{id}/{slug}', [FrontendController::class,'coursesDetails'])->name('course-details');
-Route::post('/courses-enrollment', [FrontendController::class,'coursesEnrollment'])->name('courses-enrollment');
 Route::get('/404', [FrontendController::class,'error404'])->name('error404');
 Route::post('/search', [FrontendController::class,'search'])->name('search');
 Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('article-details');
+
+
+//member functionality
+
+Route::post('/courses-enrollment', [MemberController::class,'coursesEnrollment'])->name('courses-enrollment');
+Route::get('/dashboard/my-profile', [MemberController::class,'myProfile'])->name('my-profile');
+Route::put('/member/profile-update', [MemberController::class,'profileUpdate'])->name('member.profile-update');
+Route::get('/dashboard/my-course', [MemberController::class,'myCourse'])->name('my-course');
+Route::get('/dashboard/my-certificate', [MemberController::class,'myCertificate'])->name('my-certificate');
+Route::get('/dashboard/my-community', [MemberController::class,'myCommunity'])->name('my-community');

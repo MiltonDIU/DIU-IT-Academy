@@ -18,4 +18,13 @@ class SettingsHelper
         $sliders = Slider::orderBy('created_at', 'desc')->where('is_active',1)->where('page_name',$page_name)->get();
         return $sliders;
     }
+
+    public static function enrollment($course_id){
+
+            if (count(auth()->user()->course()->where('id', $course_id)->get())>0){
+                return true;
+            }else{
+                return false;
+            }
+    }
 }

@@ -60,7 +60,7 @@ class Course extends Model implements HasMedia
 
     public function courseLessons()
     {
-        return $this->hasMany(Lesson::class, 'course_id', 'id');
+        return $this->hasMany(Lesson::class, 'course_id', 'id')->orderBy('course_content_type_id');
     }
 
     public function course_category()

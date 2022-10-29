@@ -45,7 +45,7 @@ class Lesson extends Model
     }
     public function course_content_types()
     {
-        return $this->belongsTo(CourseContentType::class);
+        return $this->belongsTo(CourseContentType::class,'course_content_type_id');
     }
     public function lesson_type()
     {

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ url('template/css/style.css')}}">
     <link rel="stylesheet" href="{{ url('template/css/responsive.css')}}">
     <!-- CSS End -->
+    @stack('style')
 </head>
 <body>
 <!-- ----------------------- Navbar start ----------------------- -->
@@ -44,9 +45,47 @@
                         </li>
                     @endif
                 @endforeach
-                <li class="nav-item">
-                    <a class="btn outline_btn_dark" href="{{ route('register') }}">Sign Up</a>
-                </li>
+                  @guest
+                      <li class="nav-item"> <a class="btn outline_btn_dark" href="{{ route('login') }}">Login</a></li>
+                      <li class="nav-item">
+                          <a class="btn outline_btn_dark" href="{{ route('register') }}">Sign Up</a>
+                      </li>
+                  @else
+
+
+                      <li class="nav-item dropdown profile_item">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              <div class="profile_icon">
+                                  <img src="{{ url('template/images/profile-vector2.jpg') }}" alt="">
+                              </div>
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                              <li>
+                                  <a class="dropdown-item" href="{{ route('my-profile') }}">Profile</a>
+                              </li>
+                               <li>
+                                  <a class="dropdown-item"  href="{{ route('my-course') }}">Course</a>
+                              </li>
+
+                              <li>
+                                  <a class="dropdown-item"  href="{{ route('my-certificate') }}">Certificate</a>
+                              </li>
+
+                              <li>
+                                  <a class="dropdown-item"  href="{{ route('my-community') }}">Community</a>
+                              </li>
+                              <hr>
+                              <li>
+                                  <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+                                      <i class="bi bi-box-arrow-right"></i>
+                                      {{ trans('global.logout') }}
+                                  </a>
+                              </li>
+                              <div class="arrow_up"></div>
+                          </ul>
+                      </li>
+                  @endguest
             </ul>
         </div>
     </div>
@@ -89,6 +128,11 @@
         </div>
     </div>
 </footer>
+
+<form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+    {{ csrf_field() }}
+</form>
+
 <!-- ----------------------- Footer part end ----------------------- -->
 
 <!-- Script Start -->
