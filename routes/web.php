@@ -210,11 +210,18 @@ Route::post('/search', [FrontendController::class,'search'])->name('search');
 Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('article-details');
 
 
-//member functionality
+//student functionality
 
-Route::post('/courses-enrollment', [MemberController::class,'coursesEnrollment'])->name('courses-enrollment');
-Route::get('/dashboard/my-profile', [MemberController::class,'myProfile'])->name('my-profile');
-Route::put('/member/profile-update', [MemberController::class,'profileUpdate'])->name('member.profile-update');
-Route::get('/dashboard/my-course', [MemberController::class,'myCourse'])->name('my-course');
-Route::get('/dashboard/my-certificate', [MemberController::class,'myCertificate'])->name('my-certificate');
-Route::get('/dashboard/my-community', [MemberController::class,'myCommunity'])->name('my-community');
+Route::post('/courses-enrollment', [MemberController::class,'coursesEnrollment'])->name('student.courses-enrollment');
+
+//after login
+Route::get('/dashboard/my-profile', [MemberController::class,'myProfile'])->name('student.my-profile');
+Route::put('/dashboard/profile-update', [MemberController::class,'profileUpdate'])->name('student.profile-update');
+Route::put('dashboard/about', [MemberController::class,'updateAbout'])->name('student.about-update');
+Route::post('dashboard/password', [MemberController::class,'updatePassword'])->name('student.password.update');
+Route::get('/dashboard/my-course', [MemberController::class,'myCourse'])->name('student.my-course');
+Route::get('/dashboard/my-certificate', [MemberController::class,'myCertificate'])->name('student.my-certificate');
+Route::get('/dashboard/my-community', [MemberController::class,'myCommunity'])->name('student.my-community');
+
+Route::put('/dashboard/profile-picture-upload', [MemberController::class,'profilePictureUpdate'])->name('student.profile-picture-update');
+Route::post('dashboard/users/media', [MemberController::class,'storeMedia'])->name('student.profile.storeMedia');

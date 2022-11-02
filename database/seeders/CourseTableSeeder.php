@@ -39,7 +39,7 @@ class CourseTableSeeder extends Seeder
                 'introduction'=>$faker->paragraph(5),
                 'about_this_course'=>$faker->paragraph(30),
                 'duration'=>'6th Month',
-                'class_start_date'=>'2022-11-02',
+                'class_start_date'=>'19-11-2022 16:41:27',
                 'class_end_date'=>'2023-05-02',
                 'is_active'=>'1'
             ];

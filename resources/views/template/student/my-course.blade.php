@@ -13,18 +13,18 @@
         <div class="container">
             <ul class="nav nav-pills nav_top mb_48" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ route('my-profile') }}">Profile</a>
+                    <a class="nav-link active" href="{{ route('student.my-profile') }}">Profile</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ route('my-course') }}">Course</a>
-                </li>
-
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ route('my-certificate') }}">Certificate</a>
+                    <a class="nav-link active" href="{{ route('student.my-course') }}">Course</a>
                 </li>
 
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" href="{{ route('my-community') }}">Community</a>
+                    <a class="nav-link active" href="{{ route('student.my-certificate') }}">Certificate</a>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" href="{{ route('student.my-community') }}">Community</a>
                 </li>
 
             </ul>

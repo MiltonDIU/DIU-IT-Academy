@@ -314,7 +314,7 @@ return [
     'team-members'                   => 'Team members',
     'no_team_notice'                 => 'Currently you do not have any teams assigned. You can set up a new one:',
     'team_name'                      => 'Team name',
-    'invite_member'                  => 'Invite member',
+    'invite_member'                  => 'Invite student',
     'invite_sent'                    => 'Invitation sent.',
     'manage_team_members'            => 'Manage team members',
     'remove'                         => 'Remove',

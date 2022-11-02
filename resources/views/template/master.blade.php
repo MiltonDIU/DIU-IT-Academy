@@ -56,24 +56,26 @@
                       <li class="nav-item dropdown profile_item">
                           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                               <div class="profile_icon">
-                                  <img src="{{ url('template/images/profile-vector2.jpg') }}" alt="">
+                                  @if(auth()->user()->avatar)
+                                      <img src="{{ auth()->user()->avatar->getUrl() }}" alt="{{ auth()->user()->name }}">
+                                  @endif
                               </div>
                           </a>
                           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
                               <li>
-                                  <a class="dropdown-item" href="{{ route('my-profile') }}">Profile</a>
+                                  <a class="dropdown-item" href="{{ route('student.my-profile') }}">Profile</a>
                               </li>
                                <li>
-                                  <a class="dropdown-item"  href="{{ route('my-course') }}">Course</a>
+                                  <a class="dropdown-item"  href="{{ route('student.my-course') }}">Course</a>
                               </li>
 
                               <li>
-                                  <a class="dropdown-item"  href="{{ route('my-certificate') }}">Certificate</a>
+                                  <a class="dropdown-item"  href="{{ route('student.my-certificate') }}">Certificate</a>
                               </li>
 
                               <li>
-                                  <a class="dropdown-item"  href="{{ route('my-community') }}">Community</a>
+                                  <a class="dropdown-item"  href="{{ route('student.my-community') }}">Community</a>
                               </li>
                               <hr>
                               <li>
@@ -158,5 +160,7 @@
 <script src="{{ url('template/js/aos.js')}}"></script>
 <script src="{{ url('template/js/script.js')}}"></script>
 <!-- Script End -->
+
+@stack('script')
 </body>
 </html>
