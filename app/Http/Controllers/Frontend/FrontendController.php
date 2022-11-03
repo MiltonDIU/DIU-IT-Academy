@@ -70,7 +70,7 @@ class FrontendController extends Controller
     }
 
     public function courses(){
-       $courses = Course::where('is_active','1')->get();
+       $courses = Course::where('is_active','1')->orderBy('id','desc')->get();
         return view('template.course',compact('courses'));
 
     }
@@ -80,4 +80,22 @@ public function coursesDetails($id,$slug){
 //        $lessons = Lesson::where('course_id',$id)->where('is_active','1')->get()->groupBy('lesson_type_id');
         return view('template.course-details',compact('course'));
 }
+
+//return course wise content type
+    public function get_by_course(Request $request)
+    {
+
+        if (!$request->course_id) {
+            $html = '<option value="">'.trans('global.pleaseSelect').'</option>';
+        } else {
+            $html = '';
+            $courses = Course::where('course_id', $request->course_id)->get();
+            $html .= '<option value="">Please select district/city</option>';
+            foreach ($courses->course_content_types as $course_content_types) {
+                $html .= '<option value="'.$course_content_types->id.'">'.$course_content_types->name.'</option>';
+            }
+        }
+
+        return response()->json(['html' => $html]);
+    }
 }

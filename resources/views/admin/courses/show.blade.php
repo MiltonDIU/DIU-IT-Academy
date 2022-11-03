@@ -158,10 +158,16 @@
                     {{ trans('cruds.lesson.title') }}
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#course_lessons" role="tab" data-toggle="tab">
+                    {{ trans('cruds.user.title') }}
+                </a>
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane" role="tabpanel" id="course_lessons">
-                @includeIf('admin.courses.relationships.courseLessons', ['lessons' => $course->courseLessons])
+                @includeIf('admin.courses.relationships.courseUsers', ['users' => $course->user])
             </div>
         </div>
     </div>

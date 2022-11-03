@@ -75,7 +75,7 @@ class LessonsController extends Controller
     {
         abort_if(Gate::denies('lesson_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $courses = Course::orderBy('id','desc')->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $lesson_types = LessonType::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
@@ -132,5 +132,22 @@ class LessonsController extends Controller
         Lesson::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    //return course wise content type
+    public function get_by_course(Request $request)
+    {
+
+        if (!$request->course_id) {
+            $html = '<option value="">'.trans('global.pleaseSelect').'</option>';
+        } else {
+            $html = '';
+            $courses = Course::find($request->course_id);
+            $html .= '<option value="">Please select Course Content Type</option>';
+            foreach ($courses->course_content_types as $course_content_type) {
+                $html .= '<option value="'.$course_content_type->id.'">'.$course_content_type->title.'</option>';
+            }
+        }
+        return response()->json(['html' => $html]);
     }
 }

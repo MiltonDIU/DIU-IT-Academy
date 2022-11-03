@@ -58,6 +58,8 @@
                               <div class="profile_icon">
                                   @if(auth()->user()->avatar)
                                       <img src="{{ auth()->user()->avatar->getUrl() }}" alt="{{ auth()->user()->name }}">
+                                  @else
+                                      {{auth()->user()->name}}
                                   @endif
                               </div>
                           </a>

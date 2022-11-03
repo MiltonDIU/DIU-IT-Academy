@@ -43,6 +43,16 @@
                     @endif
                     <span class="help-block">{{ trans('cruds.lesson.fields.course_helper') }}</span>
                 </div>
+                    <div class="form-group">
+                        <label class="required" for="course_content_type_id">Content Type</label>
+                        <select class="form-control select2 {{ $errors->has('sdistrict') ? 'is-invalid' : '' }}" name="course_content_type_id" id="course_content_type_id" required>
+                            <option value="">{{ trans('global.pleaseSelect') }}</option>
+                        </select>
+                        @if($errors->has('course_content_type_id'))
+                            <span class="text-danger">{{ $errors->first('course_content_type_id') }}</span>
+                        @endif
+                        <span class="help-block"></span>
+                    </div>
                 <div class="form-group">
                     <label class="required" for="lesson_type_id">{{ trans('cruds.lesson.fields.lesson_type') }}</label>
                     <select class="form-control select2 {{ $errors->has('lesson_type') ? 'is-invalid' : '' }}" name="lesson_type_id" id="lesson_type_id" required>
@@ -96,6 +106,19 @@
         };
         $(function () {
             $('#title').on('change', convertName2Alias);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("#course_id").change(function(){
+            $.ajax({
+                url: "{{ route('course_content_type.get_by_course') }}?course_id=" + $(this).val(),
+                method: 'GET',
+                success: function(data) {
+                    console.log(data);
+                    $('#course_content_type_id').html(data.html);
+                }
+            });
         });
     </script>
 @endpush

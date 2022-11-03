@@ -40,6 +40,8 @@ use App\Http\Controllers\Member\MemberController;
 |
 */
 Route::get('userVerification/{token}', [UserVerificationController::class,'@approve'])->name('userVerification');
+///Ajax request method
+Route::get('get-course-content-type', [LessonsController::class,'get_by_course'])->name('course_content_type.get_by_course');
 
 Route::get('/home', function () {
     if (session('status')) {
@@ -212,7 +214,7 @@ Route::get('/{slug}', [FrontendController::class,'articleDetails'])->name('artic
 
 //student functionality
 
-Route::post('/courses-enrollment', [MemberController::class,'coursesEnrollment'])->name('student.courses-enrollment');
+Route::post('/courses-enrollment', [MemberController::class,'coursesEnrollment'])->name('courses-enrollment');
 
 //after login
 Route::get('/dashboard/my-profile', [MemberController::class,'myProfile'])->name('student.my-profile');
@@ -225,3 +227,5 @@ Route::get('/dashboard/my-community', [MemberController::class,'myCommunity'])->
 
 Route::put('/dashboard/profile-picture-upload', [MemberController::class,'profilePictureUpdate'])->name('student.profile-picture-update');
 Route::post('dashboard/users/media', [MemberController::class,'storeMedia'])->name('student.profile.storeMedia');
+
+
